@@ -1,7 +1,6 @@
-package t20;
+package ru.leetcode.app.t20;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
