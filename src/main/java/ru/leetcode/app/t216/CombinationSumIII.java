@@ -9,7 +9,6 @@ public class CombinationSumIII {
         new Solution().combinationSum3(3,7);
     }
     static class Solution {
-        private List<List<Integer>> ans;
 
         /**
          *Find all valid combinations of k numbers that sum up to n such that the following conditions are true:
@@ -46,24 +45,26 @@ public class CombinationSumIII {
          * since 10 > 1, there are no valid combination.
          */
 
+        private List<List<Integer>> result;
         public List<List<Integer>> combinationSum3(int k, int n) {
-            ans = new ArrayList<>();
-            lsf(k, n, new ArrayList<>(), 0);
-            return ans;
+            result = new ArrayList<>();
+            dfs(new ArrayList<>(), 1, 0, k, n);
+            return result;
         }
 
-        public void lsf(int k, int n, List<Integer> ls, int start) {
-            if (n < 0) {
+        private void dfs(List<Integer> build, int num, int curSum, int count, int target) {
+            if (build.size() >= count) {
+
+                if (curSum == target) result.add(new ArrayList<>(build));
                 return;
             }
-            if (k == 0 && n == 0) {
-                ans.add(new ArrayList<>(ls));
-            } else {
-                for (int i = start + 1; i <= 9; i++) {
-                    ls.add(0, i);
-                    lsf(k - 1, n - i, ls, i);
-                    ls.remove(0);
-                }
+            for (int i = num; i <= 9; i++) {
+                curSum += i;
+                if (curSum > target) break;
+                build.add(i);
+                dfs(build, i + 1, curSum, count, target);
+                int removed = build.remove(build.size() - 1);
+                curSum-=removed;
             }
         }
     }
