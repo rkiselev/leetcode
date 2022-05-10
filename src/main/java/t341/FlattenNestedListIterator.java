@@ -2,6 +2,7 @@ package t341;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class FlattenNestedListIterator {
@@ -81,8 +82,6 @@ public class FlattenNestedListIterator {
             }
         }
 
-
-
         @Override
         public Integer next() {
             return q.poll();
@@ -92,5 +91,12 @@ public class FlattenNestedListIterator {
         public boolean hasNext() {
             return !q.isEmpty();
         }
+    }
+
+    class NestedInteger {
+        public boolean isInteger(){return true;}
+
+        public Integer getInteger(){return 1;}
+        public List<NestedInteger> getList(){return List.of();}
     }
 }
