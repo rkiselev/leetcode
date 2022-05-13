@@ -3,6 +3,8 @@ package ru.leetcode.app.t905;
 public class SortArrayByParity {
     public static void main(String[] args) {
         /**
+         * https://leetcode.com/problems/sort-array-by-parity/
+         *
          * Given an integer array nums, move all the even integers at the beginning of the array followed by
          * all the odd integers.
          *

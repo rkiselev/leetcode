@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class MaxNumberOfKSumPairs {
 
     /**
+     * https://leetcode.com/problems/max-number-of-k-sum-pairs/solution/
      *
      * You are given an integer array nums and an integer k.
      *

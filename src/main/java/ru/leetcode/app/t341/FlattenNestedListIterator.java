@@ -1,4 +1,4 @@
-package t341;
+package ru.leetcode.app.t341;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,6 +8,9 @@ import java.util.Queue;
 public class FlattenNestedListIterator {
 
     /**
+     *
+     * https://leetcode.com/problems/flatten-nested-list-iterator/
+     *
      * You are given a nested list of integers nestedList. Each element is either an integer or a list whose
      * elements may also be integers or other lists. Implement an iterator to flatten it.
      *

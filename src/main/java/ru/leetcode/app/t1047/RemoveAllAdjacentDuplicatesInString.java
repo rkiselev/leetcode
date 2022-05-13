@@ -10,6 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class RemoveAllAdjacentDuplicatesInString {
 
     /**
+     * https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+     *
      * You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing
      * two adjacent and equal letters and removing them.
      *

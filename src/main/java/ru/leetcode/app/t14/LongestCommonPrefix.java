@@ -5,6 +5,24 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class LongestCommonPrefix {
+    /**
+     * https://leetcode.com/problems/longest-common-prefix/
+     * Write a function to find the longest common prefix string amongst an array of strings.
+     *
+     * If there is no common prefix, return an empty string "".
+     *
+     *
+     *
+     * Example 1:
+     *
+     * Input: strs = ["flower","flow","flight"]
+     * Output: "fl"
+     * Example 2:
+     *
+     * Input: strs = ["dog","racecar","car"]
+     * Output: ""
+     * Explanation: There is no common prefix among the input strings.
+     */
 
     public static void main(String[] args) {
         assertEquals("fl", new Solution().longestCommonPrefix(new String[]{"flower","flow","flight"}));
