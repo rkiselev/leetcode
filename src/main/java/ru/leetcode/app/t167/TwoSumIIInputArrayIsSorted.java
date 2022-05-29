@@ -61,5 +61,24 @@ public class TwoSumIIInputArrayIsSorted {
             }
             return result;
         }
+
+        private int[] calc(int[] nums, int target) {
+            int[] result = new int[2];
+            boolean found = false;
+            int start = 0;
+            int end = nums.length - 1;
+            while(!found) {
+                if (nums[start] + nums[end] > target){
+                    end--;
+                } else if (nums[start] + nums[end] < target) {
+                    start++;
+                } else {
+                    found = true;
+                    result[0] = start + 1;
+                    result[1] = end + 1;
+                }
+            }
+            return result;
+        }
     }
 }
