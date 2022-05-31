@@ -1,6 +1,7 @@
 package ru.leetcode.app.t3;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import org.junit.Assert;
 
@@ -12,6 +13,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
      * Given a string s, find the length of the longest substring without repeating characters.
      */
     public static void main(String[] args) {
+        Assert.assertEquals(3, lengthOfLongestSubstring("aabaab!bb"));
+
         Assert.assertEquals(3, lengthOfLongestSubstring("abcabcbb"));
 
         Assert.assertEquals(1, lengthOfLongestSubstring("bbbbb"));
@@ -27,16 +30,24 @@ public class LongestSubstringWithoutRepeatingCharacters {
      */
 
     public static int lengthOfLongestSubstring(String s) {
-        if (s.length() == 0) return 0;
-        Map<Character, Integer> map = new HashMap<>();
-        int max = 0;
-        for (int i = 0, j = 0; i < s.length(); i++){
-            if (map.containsKey(s.charAt(i))){
-                j = Math.max(j, map.get(s.charAt(i)) + 1);
+        int result = 0;
+        int i = 0;
+        var set = new HashSet<Character>();
+        int start = 0;
+        while (i < s.length()) {
+            if (!set.add(s.charAt(i))) {
+                result = Math.max(result, set.size());
+                if (s.charAt(start) != s.charAt(i)) {
+                    while (s.charAt(start) != s.charAt(i)) {
+                        set.remove(s.charAt(start));
+                        start++;
+                    }
+                }
+                start++;
             }
-            map.put(s.charAt(i), i);
-            max = Math.max(max, i - j + 1);
+            i++;
         }
-        return max;
+        result = Math.max(result, set.size());
+        return result;
     }
 }
