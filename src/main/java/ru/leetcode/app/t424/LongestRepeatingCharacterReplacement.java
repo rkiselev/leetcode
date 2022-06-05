@@ -47,11 +47,10 @@ public class LongestRepeatingCharacterReplacement {
                 int length = end - start + 1;
                 int replace = length - max;
                 while(replace > k) {
-                    char remove = s.charAt(start);
-                    map.put(remove, map.get(remove) - 1);
-                    start++;
+                    char remove = s.charAt(start++);
+                    map.compute(remove, (a, b) -> b - 1);
                     max = map.values().stream().mapToInt(it -> it).max().orElse(0);
-                    length = end - start + 1;
+                    length--;
                     replace = length - max;
                 }
                 result = Math.max(result, length);
