@@ -42,14 +42,9 @@ public class MinimumSizeSubarraySum {
             int end = 0;
             while(end < nums.length) {
                 sum += nums[end];
-                if (sum >= target) {
+                while(sum >= target) {
                     result = Math.min(result, end - start + 1);
-                    while(sum > target && start <= end) {
-                        sum -= nums[start++];
-                        if (sum >= target) {
-                            result = Math.min(result, end - start + 1);
-                        }
-                    }
+                    sum -= nums[start++];
                 }
                 end++;
             }
