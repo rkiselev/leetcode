@@ -9,6 +9,16 @@ public class LRUCache {
     private Node left;
     private Node right;
 
+    public static void main(String[] args) {
+        var c = new LRUCache(5);
+        c.put(1,1);
+        c.put(2,2);
+        c.put(3,3);
+        c.put(4,4);
+        c.put(5,5);
+        c.put(6,6);
+    }
+
     public LRUCache(int capacity) {
         this.capacity = capacity;
         map = new HashMap<>();
