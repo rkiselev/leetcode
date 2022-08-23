@@ -2,6 +2,7 @@ package ru.leetcode.app.t230;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class KthSmallestElementInBST {
 
@@ -23,6 +24,25 @@ public class KthSmallestElementInBST {
             if (root.left != null) find(root.left, k, array);
             array.add(root.val);
             if (root.right != null) find(root.right, k, array);
+        }
+    }
+
+    class Solution {
+        public int kthSmallest(TreeNode root, int k) {
+            Stack<TreeNode> stack = new Stack<>();
+            int count = 0;
+            var cur = root;
+            while(count != k) {
+                while(cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+                cur = stack.pop();
+                count++;
+                if (count != k) cur = cur.right;
+
+            }
+            return cur.val;
         }
     }
 
