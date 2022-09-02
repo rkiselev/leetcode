@@ -31,15 +31,12 @@ public class KthLargestElementInAnArray {
 
     static class Solution {
         public int findKthLargest(int[] nums, int k) {
-            int result = 0;
-            Queue<Integer> q = new PriorityQueue<>((a, b) -> Integer.compare(b,a));
-            for (int item: nums) q.add(item);
-
-            while(k != 0){
-                result = q.poll();
-                k--;
+            Queue<Integer> q = new PriorityQueue<>();
+            for (int item: nums) {
+                q.add(item);
+                if (q.size() > k) q.poll();
             }
-            return result;
+            return q.peek();
         }
     }
 }
