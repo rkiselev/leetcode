@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Permutations {
+    List<List<Integer>> result;
 
     /**
      * https://leetcode.com/problems/permutations/
@@ -12,6 +13,10 @@ public class Permutations {
      * Given an array nums of distinct integers, return all the possible permutations.
      * You can return the answer in any order.
      */
+
+    public static void main(String[] args) {
+        new Permutations().getPermutats(new int[]{1,2,3});
+    }
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);
@@ -32,6 +37,12 @@ public class Permutations {
                 tempList.remove(tempList.size() - 1);
             }
         }
+    }
+
+    public List<List<Integer>> getPermutats(int[] nums) {
+        result = new ArrayList<>();
+        function(result, nums, 0);
+        return result;
     }
 
     public void function(List<List<Integer>> ans, int[] arr, int start) {
