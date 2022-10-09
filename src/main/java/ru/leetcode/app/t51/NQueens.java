@@ -48,7 +48,6 @@ public class NQueens {
                 up.remove(column + row);
                 down.remove(row - column);
             }
-
         }
 
         private String printQ(int  position, int size) {
