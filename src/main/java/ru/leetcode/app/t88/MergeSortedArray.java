@@ -50,6 +50,9 @@ public class MergeSortedArray {
         v1 = new int[]{1,2,3,0,0,0};
         new Solution().merge(v1, 3, new int[]{2,5,6}, 3);
         assertArrayEquals(new int[]{1,2,2,3,5,6}, v1);
+
+        v1 = new int[]{1,2,3,0,0,0};
+        new Solution().merge2(v1, 3, new int[]{2,5,6}, 3);
     }
 
     static class Solution {
@@ -68,6 +71,22 @@ public class MergeSortedArray {
                 nums1[insertIndex--] = nums2[index2--];
             }
 
+        }
+        public void merge2(int[] nums1, int m, int[] nums2, int n) {
+            int end = nums1.length - 1;
+            n--;
+            m--;
+            while(m >= 0 || n>= 0) {
+                if (m >= 0 && n >=0 && nums1[m] >= nums2[n]) {
+                    nums1[end--] = nums1[m--];
+                } else if (m >= 0 && n >=0 && nums1[m] < nums2[n]) {
+                    nums1[end--] = nums2[n--];
+                } else if (m >= 0) {
+                    nums1[end--] = nums1[m--];
+                } else {
+                    nums1[end--] = nums2[n--];
+                }
+            }
         }
     }
 }
