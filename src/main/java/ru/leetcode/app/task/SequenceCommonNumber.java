@@ -21,11 +21,17 @@ public class SequenceCommonNumber {
         int i = 0;
         int j = 0;
         int k = 0;
-        while (i < seq1.length && j < seq2.length && k < seq3.length) {
-            if (seq1[i] == seq2[j] && seq3[k] == seq2[j]) return seq1[i];
-            else if (seq2[j] > seq3[k]) k++;
-            else if (seq1[i] > seq2[j]) j++;
-            else i++;
+        while(i < seq1.length && j < seq2.length && k < seq3.length) {
+            if(seq1[i] == seq2[j] && seq1[i] == seq3[k]) {
+                return seq1[i];
+            }
+            if (seq1[i] < seq2[j]) {
+                i++;
+            } else if (seq2[j] < seq3[k]) {
+                j++;
+            } else {
+                k++;
+            }
         }
         return -1;
     }

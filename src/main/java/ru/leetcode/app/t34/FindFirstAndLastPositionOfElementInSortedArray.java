@@ -30,30 +30,35 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
     static class Solution {
         public int[] searchRange(int[] nums, int target) {
             if (nums.length == 0) return new int[]{-1,-1};
+
+            int right = find(nums, target, true);
+            int left = find(nums, target, false);
+
+            return new int[]{left, right};
+        }
+
+        private int find(int[] nums, int target, boolean isRight) {
             int start = 0;
             int end = nums.length - 1;
+            int index = -1;
             int middle = -1;
             while(start <= end) {
                 middle = end / 2 - start / 2 + start;
                 if (nums[middle] == target) {
-                    break;
+                    index = middle;
+                    if(isRight) {
+                        start = middle + 1;
+                    } else {
+                        end = middle - 1;
+                    }
                 } else if (nums[middle] < target) {
                     start = middle + 1;
                 } else {
                     end = middle - 1;
                 }
             }
-            if (nums[middle] != target) return new int[]{-1,-1};
-            int right = middle;
-            int left = middle;
-            while(right < nums.length && nums[right] == target) {
-                right++;
-            }
-            while(left >= 0 && nums[left] == target) {
-                left--;
-            }
 
-            return new int[]{left + 1, right - 1};
+            return index;
         }
     }
 }
