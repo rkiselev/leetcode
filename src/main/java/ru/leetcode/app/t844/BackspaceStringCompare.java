@@ -2,6 +2,8 @@ package ru.leetcode.app.t844;
 
 import org.junit.Assert;
 
+import java.util.concurrent.ExecutorService;
+
 public class BackspaceStringCompare {
 
     /**
@@ -14,15 +16,37 @@ public class BackspaceStringCompare {
      */
 
     public static void main(String[] args) {
-        Assert.assertTrue(backspaceCompare("ab#c", "ad#c"));
+        Assert.assertFalse(backspaceCompare("bxj##tw", "bxj###tw"));
         Assert.assertTrue(backspaceCompare("ab##", "c#d#"));
+        Assert.assertTrue(backspaceCompare("xywrrmp", "xywrrmu#p"));
+        Assert.assertTrue(backspaceCompare("ab#c", "ad#c"));
         Assert.assertFalse(backspaceCompare("a#c", "b"));
     }
 
     public static boolean backspaceCompare(String s, String t) {
-        s = formatString(s);
-        t = formatString(t);
-        return s.equals(t);
+        boolean same = true;
+        int i = s.length() - 1;
+        int j = t.length() - 1;
+        while(same && (i>= 0 || j >= 0)){
+            char sChar = i >= 0 ? s.charAt(i) : 'A';
+            char tChar = j >= 0 ? t.charAt(j) : 'A';
+            int skip = 0;
+            while((sChar == '#' || skip > 0) && i>=0) {
+                skip += sChar == '#' ? 1: -1;
+                i--;
+                sChar = i >= 0 ? s.charAt(i) : 'A';
+            }
+            skip = 0;
+            while((tChar == '#' || skip > 0) && j>=0) {
+                skip += tChar == '#' ? 1: -1;
+                j--;
+                tChar = j >= 0 ? t.charAt(j) : 'A';
+            }
+            same = tChar == sChar;
+            i--;
+            j--;
+        }
+        return same && i < 0 && j < 0 ;
     }
 
     private static String formatString(String s) {
