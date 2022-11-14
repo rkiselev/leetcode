@@ -2,6 +2,8 @@ package ru.leetcode.app.t394;
 
 import org.junit.Assert;
 
+import java.util.Stack;
+
 public class DecodeString {
 
     /**
@@ -29,52 +31,40 @@ public class DecodeString {
         Assert.assertEquals("abcabccdcdcdef", s);
     }
 
-    public static String decodeString(String s) {
-        StringBuilder result = new StringBuilder();
-        int i = 0;
-        while (i < s.length())  {
-            i = decode(s, i, result);
+        public static String decodeString(String s) {
+            Stack<Character> stack = new Stack<>();
+            int index = 0;
+            while(index < s.length()) {
+                char c = s.charAt(index);
+                if (c == ']') {
+                    solveBracket(stack);
+                } else {
+                    stack.push(c);
+                }
+                index++;
+            }
+            StringBuilder result = new StringBuilder();
+            while(!stack.isEmpty()) {
+                result.append(stack.pop());
+            }
+            return result.reverse().toString();
         }
 
-
-        return result.toString();
-    }
-
-    private static int decode(String s, int current, StringBuilder result) {
-        int i = current;
-        char c;
-        do{
-            c = s.charAt(i);
-            if(Character.isLetter(c)) {
-                result.append(c);
-            } else if(Character.isDigit(c)) {
-                StringBuilder count = new StringBuilder();
-                StringBuilder value = new StringBuilder();
-                while(c !='[') {
-                    count.append(c);
-                    i++;
-                    c = s.charAt(i);
-                }
-                i++;
-                c = s.charAt(i);
-                while(c !=']') {
-                    if (Character.isDigit(c)) {
-                        StringBuilder r = new StringBuilder();
-                        i = decode(s, i, r);
-                        value.append(r);
-                    } else {
-                        value.append(c);
-                        i++;
-                    }
-                    c = s.charAt(i);
-                }
-                var countI = Integer.valueOf(count.toString());
-                for (int j = 0; j < countI; j++) {
-                    result.append(value);
-                }
+        private static void solveBracket(Stack<Character> stack) {
+            StringBuilder semiResult = new StringBuilder();
+            while(stack.peek() != '[') {
+                semiResult.append(stack.pop());
             }
-            i++;
-        } while(i < s.length() && c !=']');
-        return i;
-    }
+            stack.pop();
+            StringBuilder number = new StringBuilder();
+            while(!stack.isEmpty() && Character.isDigit(stack.peek())) {
+                number.append(stack.pop());
+            }
+            String s = semiResult.reverse()
+                    .toString()
+                    .repeat(Math.max(0, Integer.parseInt(number.reverse().toString())));
+            for (int i = 0; i < s.length(); i++) {
+                stack.push(s.charAt(i));
+            }
+        }
 }
