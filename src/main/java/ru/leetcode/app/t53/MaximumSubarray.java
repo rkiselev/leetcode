@@ -21,12 +21,15 @@ public class MaximumSubarray {
     }
 
     public static int maxSubArray(int[] nums) {
-        int max = nums[0];
-        int current = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            current = Math.max(current + nums[i], nums[i]);
-            max = Math.max(max, current);
+        int maxSubArray = nums[0];
+        int curSum = 0;
+        for (int val: nums) {
+            if (curSum < 0) {
+                curSum = 0;
+            }
+            curSum += val;
+            maxSubArray = Math.max(maxSubArray, curSum);
         }
-        return max;
+        return maxSubArray;
     }
 }
