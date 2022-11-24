@@ -13,8 +13,6 @@ public class MergeKSortedLists {
      *
      * Merge all the linked-lists into one sorted linked-list and return it.
      *
-     *
-     *
      * Example 1:
      *
      * Input: lists = [[1,4,5],[1,3,4],[2,6]]
