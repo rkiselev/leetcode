@@ -46,7 +46,7 @@ public class DailyTemperatures {
             return result;
         }
 
-        private class Pair {
+        private static class Pair {
             int value;
             int index;
             Pair(int value, int index) {
