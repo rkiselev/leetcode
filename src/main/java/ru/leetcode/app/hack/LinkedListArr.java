@@ -1,5 +1,7 @@
 package ru.leetcode.app.hack;
 
+import ru.leetcode.app.ListNode;
+
 public class LinkedListArr {
 
     public static void main(String[] args) {
@@ -7,12 +9,12 @@ public class LinkedListArr {
         System.out.println(r);
     }
 
-    private static Node convert(int[] arr) {
-        Node result = new Node();
-        Node backup = result;
+    public static ListNode convert(int[] arr) {
+        ListNode result = new ListNode();
+        ListNode backup = result;
 
         for(int v: arr) {
-            backup.next = new Node(v);
+            backup.next = new ListNode(v);
             backup = backup.next;
         }
         return result.next;
