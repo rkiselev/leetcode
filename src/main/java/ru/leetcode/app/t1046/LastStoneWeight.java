@@ -1,6 +1,7 @@
 package ru.leetcode.app.t1046;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +28,7 @@ public class LastStoneWeight {
 
     static class Solution {
         public int lastStoneWeight(int[] stones) {
-            PriorityQueue<Integer> q = new PriorityQueue<>((a1,a2) -> Integer.compare(a2, a1));
+            Queue<Integer> q = new PriorityQueue<>((a1, a2) -> Integer.compare(a2, a1));
             for (int val : stones) q.add(val);
             while(q.size() > 1) {
                 int x = q.poll();
