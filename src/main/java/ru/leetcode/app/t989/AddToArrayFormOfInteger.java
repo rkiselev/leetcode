@@ -40,26 +40,26 @@ public class AddToArrayFormOfInteger {
 
     static class Solution {
         public List<Integer> addToArrayForm(int[] num, int k) {
-            List<Integer>num2 = splitToDigit(k);
             List<Integer> result = new ArrayList<>();
             int size1 = num.length - 1;
-            int size2 = num2.size() - 1;
             int move = 0;
-            while(size1 >= 0 && size2 >= 0) {
-                int sum = num[size1--] + num2.get(size2--) + move;
+            while(size1 >= 0 && k >= 0) {
+                int sum = num[size1--] + k % 10 + move;
+                k /= 10;
                 move = sum / 10;
                 result.add(sum % 10);
             }
-            addLast(num, size1, num2, size2, move, result);
+            addLast(num, size1, k, move, result);
             Collections.reverse(result);
             return result;
         }
 
-        private void addLast(int[] num, int size1, List<Integer> num2, int size2, int move, List<Integer> result) {
-            if (size1 == -1 && size2 == -1 && move == 0) return;
+        private void addLast(int[] num, int size1, int k, int move, List<Integer> result) {
+            if (size1 == -1 && k == 0 && move == 0) return;
             if (size1 == -1) {
-                while (size2 >= 0) {
-                    int sum = num2.get(size2--) + move;
+                while (k > 0) {
+                    int sum = k % 10 + move;
+                    k /= 10;
                     move = sum / 10;
                     result.add(sum % 10);
                 }
@@ -73,20 +73,6 @@ public class AddToArrayFormOfInteger {
             if (move > 0) {
                 result.add(move);
             }
-        }
-        private List<Integer> splitToDigit(int val) {
-            StringBuilder builder = new StringBuilder();
-            while(val != 0) {
-                builder.append(val % 10);
-                val /= 10;
-            }
-            builder.reverse();
-            List<Integer> result = new ArrayList<>();
-            String number = builder.toString();
-            for (int i = 0; i < number.length(); i++) {
-                result.add(Integer.valueOf(number.substring(i, i + 1)));
-            }
-            return result;
         }
     }
 }
