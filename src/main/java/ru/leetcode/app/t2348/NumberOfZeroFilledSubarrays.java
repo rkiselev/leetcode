@@ -49,17 +49,12 @@ public class NumberOfZeroFilledSubarrays {
             for (int num: nums) {
                 if (num == 0) {
                     count++;
-                } else if (count > 0){
-                    result += calc(count);
+                } else {
                     count = 0;
                 }
+                result += count;
             }
-            if (count > 0) result += calc(count);
             return result;
-        }
-
-        private long calc(long n) {
-            return n * (n + 1)/2;
         }
     }
 }
