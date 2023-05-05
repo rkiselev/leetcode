@@ -37,13 +37,15 @@ public class MaximumNumberOfVowelsInSubstringOfGivenLength {
             int end = 0;
             int result = 0;
             int currentResult = 0;
+            for (int i = end; i < k; i++) {
+                if (isVowel(s.charAt(i))) currentResult++;
+            }
+            end = k;
+            result = Math.max(result, currentResult);
             while(end < s.length()) {
-                if (end - start + 1 <= k) {
-                    if (isVowel(s.charAt(end))) currentResult++;
-                } else {
-                    if (isVowel(s.charAt(start++))) currentResult--;
-                    if (isVowel(s.charAt(end))) currentResult++;
-                }
+                if (isVowel(s.charAt(start++))) currentResult--;
+                if (isVowel(s.charAt(end))) currentResult++;
+
                 end++;
                 result = Math.max(result, currentResult);
             }
